@@ -1,14 +1,20 @@
-const config = require("./settings/appsettings.secrets.json");
-
 const express = require("express");
 const cors = require("cors");
 const index = require("./routes");
 
 // Constants
-const { ALLOWED_ORIGINS, HOST, PORT } = config;
+const {
+  ALLOWED_ORIGINS,
+  HOST,
+  PORT
+} = require("./settings/appsettings.secrets.json");
 
 // App
 const app = express();
+
+app.listen(PORT, HOST);
+app.use(express.json());
+app.use("", index);
 
 app.use(
   cors({
@@ -17,8 +23,8 @@ app.use(
       // (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
       if (ALLOWED_ORIGINS.indexOf(origin) === -1) {
-        const msg = "Origen " + "no permitido.";
-        console.log(msg + " origin:" + origin);
+        const msg = "Origen no permitido";
+        console.log(`${msg} origin: ${origin}`);
         return callback(new Error(msg), false);
       }
       return callback(null, true);
@@ -37,8 +43,5 @@ app.use((req, res, next) => {
     next();
   });
 });
-app.use(express.json());
-app.use("", index);
 
-app.listen(PORT, HOST);
 console.log(`Corriendo  API en http://${HOST}:${PORT}`);

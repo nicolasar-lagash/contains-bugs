@@ -1,3 +1,10 @@
+/**
+ * Calcula la edad dada una fecha de nacimiento
+ * @param {string}  birthday : 01-02-1998
+ * @version         1.0.0 - 08-01-2020
+ * @author          Nicolás Arias - nicolarias
+ * @returns {int} : 21
+ */
 function calculateAge(birthday) {
   var birthday_arr = birthday.split("-");
   var birthday_date = new Date(

@@ -1,30 +1,10 @@
-/*************************************************************/
-// NumeroALetras
-// The MIT License (MIT)
-//
-// Copyright (c) 2015 Luis Alfredo Chee
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//
-// @author Rodolfo Carmona
-// @contributor Jean (jpbadoino@gmail.com)
-/*************************************************************/
+/**
+ * Transforma un número de lenght 1 a letra
+ * @param {Number}  num : 1
+ * @version         1.0.0 - 08-01-2020
+ * @author          Nicolás Arias - nicolarias
+ * @returns {string} : UN
+ */
 function Unidades(num) {
   switch (num) {
     case 1:
@@ -50,6 +30,13 @@ function Unidades(num) {
   return "";
 } //Unidades()
 
+/**
+ * Transforma un número de length 2 a letras y agrega a la frase la unidad
+ * @param {Number}  num : 1
+ * @version         1.0.0 - 08-01-2020
+ * @author          Nicolás Arias - nicolarias
+ * @returns {string} : UN
+ */
 function Decenas(num) {
   const decena = Math.floor(num / 10);
   const unidad = num - decena * 10;
@@ -98,12 +85,27 @@ function Decenas(num) {
   }
 } //Unidades()
 
+/**
+ * Añade un 'Y' para sumar los string de de decenas y unidades
+ * @param {string}  strSin : SETENTA
+ * @param {Number}  numUnidades : 2
+ * @version         1.0.0 - 08-01-2020
+ * @author          Nicolás Arias - nicolarias
+ * @returns {string} : SETENTA Y DOS
+ */
 function DecenasY(strSin, numUnidades) {
   if (numUnidades > 0) return strSin + " Y " + Unidades(numUnidades);
 
   return strSin;
 } //DecenasY()
 
+/**
+ * Transforma un número de length 3 a letras y agrega a la frase las decenas
+ * @param {num}  num : CIEN, numUnidades : 2
+ * @version         1.0.0 - 08-01-2020
+ * @author          Nicolás Arias - nicolarias
+ * @returns {string} : CIENTO DOS
+ */
 function Centenas(num) {
   const centenas = Math.floor(num / 100);
   const decenas = num - centenas * 100;
@@ -133,6 +135,16 @@ function Centenas(num) {
   return Decenas(decenas);
 } //Centenas()
 
+/**
+ * Añade un 'Y' para sumar los string de de decenas y unidades
+ * @param {num}  num : 1000006
+ * @param {divisor}  divisor : 1000000
+ * @param {srtSingular}  srtSingular : UN MILLON DE
+ * @param {strPlural}  strPlural : MILLONES DE
+ * @version         1.0.0 - 08-01-2020
+ * @author          Nicolás Arias - nicolarias
+ * @returns {string} : UN MILLON SEIS
+ */
 function Seccion(num, divisor, strSingular, strPlural) {
   const cientos = Math.floor(num / divisor);
   const resto = num - cientos * divisor;
@@ -148,6 +160,13 @@ function Seccion(num, divisor, strSingular, strPlural) {
   return letras;
 } //Seccion()
 
+/**
+ * Transforma un número de length 4 a letras
+ * @param {num}  num : 1000
+ * @version         1.0.0 - 08-01-2020
+ * @author          Nicolás Arias - nicolarias
+ * @returns {string} : MIL
+ */
 function Miles(num) {
   divisor = 1000;
   cientos = Math.floor(num / divisor);
@@ -161,6 +180,13 @@ function Miles(num) {
   return strMiles + " " + strCentenas;
 } //Miles()
 
+/**
+ * Transforma números de millones a letras y agrega a la frase los demás números
+ * @param {num}  num : 1000020
+ * @version         1.0.0 - 08-01-2020
+ * @author          Nicolás Arias - nicolarias
+ * @returns {string} : UN MILLON VEINTE
+ */
 function Millones(num) {
   divisor = 1000000;
   cientos = Math.floor(num / divisor);
@@ -174,6 +200,13 @@ function Millones(num) {
   return strMillones + " " + strMiles;
 } //Millones()
 
+/**
+ * Transforma números a letras usando las demás funciones
+ * @param {num}  num : 123
+ * @version         1.0.0 - 08-01-2020
+ * @author          Nicolás Arias - nicolarias
+ * @returns {string} : CIENTO VEINTITRES
+ */
 function NumeroALetras(num) {
   var data = {
     numero: num,

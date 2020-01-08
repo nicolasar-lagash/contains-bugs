@@ -6,6 +6,7 @@ const api = require("../helpers/api");
 
 const numberSpelling = require("../helpers/numberSpelling");
 const birthdate = require("../helpers/birthdate");
+const qr = require("../helpers/qr");
 
 app.get("/numberSpelling/:number", (req, res) => {
   res.status(200).send(numberSpelling.NumeroALetras(req.params.number));
@@ -15,7 +16,11 @@ app.get("/birthdate/:date", (req, res) => {
   res.status(200).send(birthdate.calculateAge(req.params.date).toString());
 });
 
-app.get("/api/:fecha", async function(req, res) {
+app.get("/api/qr", (req, res) => {
+  res.status(200).send(qr());
+});
+
+app.get("/api/uf/:fecha", async function(req, res) {
   trace.trackEvent(`Request a /api/example correcta.`);
 
   const request = await fetch(api.uriConfig.api.getUF(req.params.fecha), {
@@ -38,7 +43,6 @@ app.get("/api/:fecha", async function(req, res) {
   });
 
   const response = await request.json();
-  console.log(response);
   if (response) {
     trace.trackEvent(`Llamada a servicio correcta.`, response);
     res.send({
@@ -58,4 +62,5 @@ app.get("/api/:fecha", async function(req, res) {
     res.end();
   }
 });
+
 module.exports = app;
